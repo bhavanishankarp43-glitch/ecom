@@ -4,16 +4,16 @@ const Product = require("../Models/Product.js")
 
 const isAdmin = (req, res, next) => {
     const { role } = req.body
-    if (role!= "admin")
+    if (role != "admin")
         return res.status(403).json({ "message": "access denied only admin can add a product" })
     next()
 }
 
-router.post("/add", isAdmin,async (req, res) => {
+router.post("/add", isAdmin, async (req, res) => {
     try {
-        const { name, price, discription, category, stock } = req.body
+        const { name, price, description, category, stock } = req.body
         const newProduct = new Product({
-            name, price, discription, category, stock
+            name, price, description, category, stock
         })
         await newProduct.save()
         return res.status(200).json({ "message": "Product added sucessfully" })
@@ -23,14 +23,14 @@ router.post("/add", isAdmin,async (req, res) => {
     }
 })
 
-router.get("/",async (req,res)=>{
-    try{
+router.get("/", async (req, res) => {
+    try {
         const products = await Product.find()
         res.status(200).json(products)
     }
-    catch(err){
-        console.log("error while fetching the products",err)
-        res.status(500).json({"message":"Error while fetching the products"})
+    catch (err) {
+        console.log("error while fetching the products", err)
+        res.status(500).json({ "message": "Error while fetching the products" })
     }
 })
 
