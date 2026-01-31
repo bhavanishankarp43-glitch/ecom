@@ -8,7 +8,7 @@ const Cart = () => {
   useEffect(() => {
     if (userId) {
       axios
-        .get(`http://localhost:4000/api/cart?userId=${userId}`)
+        .get(`https://ecom-33ef.onrender.com/api/cart?userId=${userId}`)
         .then((res) => setCartItems(res.data.items || []))
         .catch((err) => console.log(err));
     }
@@ -42,7 +42,7 @@ const Cart = () => {
               cartItems.map((item, index) => (
                 <div key={index} style={styles.itemCard}>
                   <img
-                    src={`http://localhost:4000/uploads/${item.product.image}`}
+                    src={`https://ecom-33ef.onrender.com/uploads/${item.product.image}`}
                     alt={item.product.name}
                     style={styles.productImage}
                   />
